@@ -88,26 +88,84 @@ async function findOneUser (req, res){
         });
     }
 }
-
 /**
  * Update user
  */
 async function updateUser (req, res){
+    /**
+     * TASK:
+     * IMPLEMENT THE FUNCTION________-
+     */
+    // CHECK IF THE REQUEST BODY IS EMPTY
+    if (!req.body) {
+        res.status(400).send({
+            message: "Request body is empty!!!!"
+        });
+        return;
+    }
+
+    if (!req.params) {
+        res.status(400).send({
+            message: "Request params is empty!!!!"
+        });
+        return;
+    }
+
+    const userUpdate = {
+        username: req.body.username
+    }
+
+    const user_id = req.params.idUser
+
+    dbManager.User.update(userUpdate, { where: {idUser: user_id}}).then (
+        data => {
+            res.send(data);
+        }
+    ).catch (
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response
+            res.status(500).send({
+                message: "No se pudo actualizar el usuario"
+            });
+        }
+    );
 
 }
 
 /**
  * Delete an existen user by username
- * @param {*} req 
- * @param {*} res 
+ * @param {*} req
+ * @param {*} res
  */
-function deleteUserByUsername (req, res){ 
-                /**
-                 * TASK:
-                 * IMPLEMENT THE FUNCTION______________________-
-                 */
+function deleteUserByUsername (req, res){
+    /**
+     * TASK:
+     * IMPLEMENT THE FUNCTION________-
+     */
 
+    if (!req.params) {
+        res.status(400).send({
+            message: "Request params is empty!!!!"
+        });
+        return;
+    }
 
+    const username_params = req.params.username
+
+    dbManager.User.destroy({where: {username: username_params}}).then(
+        res.send("El usuario se elimino correctamente")
+    ).catch(
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response
+            res.status(500).send({
+                message: "No se pudo eliminar el usuario."
+            });
+        }
+    );
 }
 
 /**
