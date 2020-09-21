@@ -132,6 +132,8 @@ async function updateUser (req, res){
         }
     );
 
+
+
 }
 
 /**
@@ -179,7 +181,20 @@ function deleteAllUsers(req, res) {
      * IMPLEMENT THE FUNCTION______________________-
      */
 
+    //[Op.gt] : 0}
 
+    dbManager.User.destroy({where: {idUser: {[Op.gt]: 0}}}).then(
+        res.send("Se elimino todos los usuarios correctamente")
+    ).catch(
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response
+            res.status(500).send({
+                message: "No se pudo eliminar todos los usuarios."
+            });
+        }
+    );
 
 }
 
@@ -195,9 +210,25 @@ function findAllUsersByCreatedDate(req, res) {
      * IMPLEMENT THE FUNCTION______________________-
      */
 
+    const fecha = req.params.creation_date
 
+    dbManager.User.findAll( { where: {
 
+            creation_date: { [Op.between]: [fecha, fecha]}} }).then(
 
+        data => {
+            res.send(data);
+        }
+    ).catch(
+        e => {
+            // Print error on console
+            console.log(e);
+            // Send error message as a response
+            res.status(500).send({
+                message: "No se pudo eliminar todos los usuarios."
+            });
+        }
+    );
 }
 
 
