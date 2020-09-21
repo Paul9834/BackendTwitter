@@ -1,9 +1,11 @@
 const dbManager = require ('../database.config/database.manager');
+const { Op } = require("sequelize");
 
 /**
  * Creation of an user
  * @param {*} userObject JSON Object with User information
  */
+
 async function createUser (req, res) {
     
     // CHECK IF THE REQUEST BODY IS EMPTY
@@ -19,12 +21,13 @@ async function createUser (req, res) {
         username: req.body.username,
         creation_date: req.body.creation_date
     }
-    
+
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
     dbManager.User.create(newUserObject).then (
         data => {
             res.send (data);
         }
+
     ).catch (
         e => {
             // Print error on console
@@ -90,10 +93,7 @@ async function findOneUser (req, res){
  * Update user
  */
 async function updateUser (req, res){
-                /**
-                 * TASK:
-                 * IMPLEMENT THE FUNCTION______________________- 
-                 */
+
 }
 
 /**
@@ -104,33 +104,42 @@ async function updateUser (req, res){
 function deleteUserByUsername (req, res){ 
                 /**
                  * TASK:
-                 * IMPLEMENT THE FUNCTION______________________- 
+                 * IMPLEMENT THE FUNCTION______________________-
                  */
+
 
 }
 
 /**
- * 
- * @param {*} req 
- * @param {*} res 
+ *
+ * @param {*} req
+ * @param {*} res
  */
-function deleteAllUsers (req, res){
-                /**
-                 * TASK:
-                 * IMPLEMENT THE FUNCTION______________________- 
-                 */
+function deleteAllUsers(req, res) {
+    /**
+     * TASK:
+     * IMPLEMENT THE FUNCTION______________________-
+     */
+
+
+
 }
 
 /**
- * 
- * @param {*} req 
- * @param {*} res 
+ *
+ * @param {*} req
+ * @param {*} res
  */
-function findAllUsersByCreatedDate (req, res){
-                /**
-                 * TASK:
-                 * IMPLEMENT THE FUNCTION______________________- 
-                 */
+function findAllUsersByCreatedDate(req, res) {
+
+    /**
+     * TASK:
+     * IMPLEMENT THE FUNCTION______________________-
+     */
+
+
+
+
 }
 
 

@@ -20,18 +20,19 @@ router.post ('/',userController.createUser);
 router.put ('/:idUser',userController.updateUser);
 /**
  * DELETE Route to delete an user by username
+ *
  */
 router.delete ('/:username',userController.deleteUserByUsername);
+
 /**
  * DELETE Route to delete all users
+ *
  */
+
 router.delete ('/',userController.deleteAllUsers);
 
 
-/**
- * TASK:
- * ADD THE MISSING ROUTES ______________________________________________________ 
- */
+router.get ('/findAllUsersByCreateDate/:creation_date',userController.findAllUsersByCreatedDate);
 
 // Export router
 module.exports = router;
